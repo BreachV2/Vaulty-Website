@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Vaulty – Der ultimative Economy Discord Bot. Sammle Coins, gründe Unternehmen, raube aus und handle auf dem Marktplatz deines Servers.">
+  <meta name="theme-color" content="#06080d">
+  <title>Vaulty – Economy Discord Bot</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏦</text></svg>">
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="Vaulty – Economy Discord Bot">
+  <meta property="og:description" content="Sammle Coins, gründe Unternehmen, raube aus und dominiere den Marktplatz.">
+  <meta property="og:type"        content="website">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Zum Inhalt springen</a>
+
+  <!-- ─── Cookie Banner ────────────────────────────────────── -->
+  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Cookie-Einwilligung" aria-live="polite">
+    <div class="cookie-banner__content">
+      <div class="cookie-banner__icon" aria-hidden="true">🍪</div>
+      <div class="cookie-banner__text">
+        <strong>Cookies &amp; Datenschutz</strong>
+        <p>
+          Diese Seite verwendet technisch notwendige Cookies sowie Google Fonts
+          (dabei wird deine IP-Adresse an Google übertragen). Mit Klick auf
+          „Akzeptieren" stimmst du dem zu. Mehr Infos in der
+          <a href="privacy.html">Datenschutzerklärung</a>.
+        </p>
+      </div>
+      <div class="cookie-banner__actions">
+        <button class="btn btn-ghost btn-sm" id="cookieReject" type="button">Ablehnen</button>
+        <button class="btn btn-primary btn-sm" id="cookieAccept" type="button">Akzeptieren</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Navigation ──────────────────────────────────────── -->
+  <header class="nav-header" id="navbar">
+    <nav class="nav-container" aria-label="Hauptnavigation">
+      <a href="index.html" class="nav-logo" aria-label="Vaulty – zur Startseite">
+        <span class="nav-logo__icon" aria-hidden="true">🏦</span>
+        <span class="nav-logo__text">Vaulty</span>
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="#features"  class="nav-link">Features</a></li>
+        <li><a href="#commands"  class="nav-link">Commands</a></li>
+        <li>
+          <a href="https://discord.com/oauth2/authorize?client_id=1495824921593381105"
+             target="_blank" rel="noopener noreferrer"
+             class="btn btn-primary btn-sm">
+            &#43; Bot einladen
+          </a>
+        </li>
+      </ul>
+
+      <button class="nav-mobile-toggle" id="mobileToggle"
+              aria-label="Menü öffnen" aria-expanded="false"
+              type="button">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div class="nav-mobile-menu" id="mobileMenu" hidden>
+      <ul role="list">
+        <li><a href="#features"  class="nav-link">Features</a></li>
+        <li><a href="#commands"  class="nav-link">Commands</a></li>
+        <li>
+          <a href="https://discord.com/oauth2/authorize?client_id=1495824921593381105"
+             target="_blank" rel="noopener noreferrer"
+             class="btn btn-primary">
+            Bot einladen
+          </a>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ─── MAIN ────────────────────────────────────────────── -->
+  <main id="main-content">
+
+    <!-- HERO ─────────────────────────────────────────────── -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
+      <div class="hero-overlay" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="hero-badge__dot" aria-hidden="true"></span>
+          Economy Discord Bot
+        </div>
+
+        <h1 class="hero-title" id="hero-heading">
+          <span class="gradient-text">VAULTY</span>
+        </h1>
+
+        <p class="hero-subtitle">Dein Server. Deine Wirtschaft.</p>
+
+        <p class="hero-desc">
+          Sammle Coins, gründe Unternehmen, raube andere aus und domniniere
+          den Marktplatz – Vaulty bringt eine vollständige Wirtschaft direkt
+          in deinen Discord Server.
+        </p>
+
+        <div class="hero-actions">
+          <a href="https://discord.com/oauth2/authorize?client_id=1495824921593381105"
+             target="_blank" rel="noopener noreferrer"
+             class="btn btn-discord">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+              <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.024.019.048.035.062a19.916 19.916 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/>
+            </svg>
+            Jetzt einladen – kostenlos
+          </a>
+
+          <a href="#features" class="btn btn-ghost">
+            Features entdecken
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+
+      <div class="hero-scroll-hint" aria-hidden="true">
+        <span>Scroll</span>
+        <div class="hero-scroll-hint__line"></div>
+      </div>
+    </section>
+
+    <!-- FEATURES ─────────────────────────────────────────── -->
+    <section class="features" id="features" aria-labelledby="features-heading">
+      <div class="container">
+        <header class="section-header" data-reveal>
+          <span class="section-label">Features</span>
+          <h2 class="section-title" id="features-heading">
+            Alles, was deine Server-Wirtschaft braucht
+          </h2>
+          <p class="section-desc">
+            Von einfachem Coin-Farming bis zu komplexen Unternehmensstrukturen –
+            Vaulty hat alles.
+          </p>
+        </header>
+
+        <div class="features-grid" role="list">
+
+          <article class="feature-card" data-tilt role="listitem">
+            <div class="feature-card__glow" aria-hidden="true"></div>
+            <span class="feature-card__icon" aria-hidden="true">💰</span>
+            <h3 class="feature-card__title">Coins verdienen</h3>
+            <p class="feature-card__desc">
+              Arbeite, schließe Quests ab und hole deine tägliche Belohnung ab.
+              Baue deinen Reichtum Schritt für Schritt auf.
+            </p>
+          </article>
+
+          <article class="feature-card" data-tilt role="listitem">
+            <div class="feature-card__glow" aria-hidden="true"></div>
+            <span class="feature-card__icon" aria-hidden="true">🏦</span>
+            <h3 class="feature-card__title">Banking System</h3>
+            <p class="feature-card__desc">
+              Lege deine Coins sicher auf der Bank an.
+              Schütze dein Vermögen vor Raubüberfällen anderer Nutzer.
+            </p>
+          </article>
+
+          <article class="feature-card" data-tilt role="listitem">
+            <div class="feature-card__glow" aria-hidden="true"></div>
+            <span class="feature-card__icon" aria-hidden="true">🔫</span>
+            <h3 class="feature-card__title">Ausrauben</h3>
+            <p class="feature-card__desc">
+              Raube andere Server-Mitglieder aus. Nur Cash-Bestände sind gefährdet –
+              Bankguthaben ist sicher. Wirst du erwischt?
+            </p>
+          </article>
+
+          <article class="feature-card" data-tilt role="listitem">
+            <div class="feature-card__glow" aria-hidden="true"></div>
+            <span class="feature-card__icon" aria-hidden="true">🏪</span>
+            <h3 class="feature-card__title">Shop System</h3>
+            <p class="feature-card__desc">
+              Kaufe Items, Rollen und exklusive Gegenstände im Server-Shop.
+              Admins können den Shop komplett anpassen.
+            </p>
+          </article>
+
+          <article class="feature-card" data-tilt role="listitem">
+            <div class="feature-card__glow" aria-hidden="true"></div>
+            <span class="feature-card__icon" aria-hidden="true">🏢</span>
+            <h3 class="feature-card__title">Business System</h3>
+            <p class="feature-card__desc">
+              Gründe dein eigenes Unternehmen, stelle Mitarbeiter ein und
+              generiere passives Einkommen für dich.
+            </p>
+          </article>
+
+          <article class="feature-card" data-tilt role="listitem">
+            <div class="feature-card__glow" aria-hidden="true"></div>
+            <span class="feature-card__icon" aria-hidden="true">📈</span>
+            <h3 class="feature-card__title">Marktplatz</h3>
+            <p class="feature-card__desc">
+              Handle mit anderen Nutzern auf dem dynamischen Marktplatz.
+              Angebot und Nachfrage bestimmen die Preise.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMANDS ─────────────────────────────────────────── -->
+    <section class="commands-section" id="commands" aria-labelledby="commands-heading">
+      <div class="container">
+        <header class="section-header" data-reveal>
+          <span class="section-label">Commands</span>
+          <h2 class="section-title" id="commands-heading">Alle Befehle im Überblick</h2>
+          <p class="section-desc">
+            Alle Commands starten mit dem Prefix <code>!</code> – z. B. <code>!balance</code>.
+            Mit <code>!help &lt;befehl&gt;</code> erhältst du mehr Details zu einem Befehl.
+          </p>
+        </header>
+
+        <!-- Economy -->
+        <div class="commands-category" data-reveal>
+          <h3 class="commands-category__title">
+            <span class="commands-category__icon" aria-hidden="true">💰</span>
+            Economy
+          </h3>
+          <div class="commands-grid" role="list">
+            <div class="command-item" role="listitem">
+              <code class="command-name">!balance</code>
+              <span class="command-desc">Kontostand anzeigen</span>
+            </div>
+            <div class="command-item" role="listitem">
+              <code class="command-name">!deposit</code>
+              <span class="command-desc">Coins auf die Bank einzahlen</span>
+            </div>
+            <div class="command-item" role="listitem">
+              <code class="command-name">!withdraw</code>
+              <span class="command-desc">Coins von der Bank abheben</span>
+            </div>
+            <div class="command-item" role="listitem">
+              <code class="command-name">!daily</code>
+              <span class="command-desc">Tägliche Belohnung abholen</span>
+            </div>
+            <div class="command-item" role="listitem">
+              <code class="command-name">!work</code>
+              <span class="command-desc">Arbeiten und Coins verdienen</span>
+            </div>
+            <div class="command-item" role="listitem">
+              <code class="command-name">!pay</code>
+              <span class="command-desc">Coins an einen Nutzer senden</span>
+            </div>
+            <div class="command-item" role="listitem">
+              <code class="command-name">!rob</code>
+              <span class="command-desc">Anderen Nutzer ausrauben</span>
+            </div>
+            <div class="command-item" role="listitem">
+              <code class="command-name">!shop</code>
+              <span class="command-desc">Server-Shop öffnen</span>
+            </div>
+            <div class="command-item" role="listitem">
+              <code class="command-name">!buy</code>
+              <span class="command-desc">Item aus dem Shop kaufen</span>
+            </div>
+            <div class="command-item" role="listitem">
+              <code class="command-name">!inventory</code>
+              <span class="command-desc">Inventar anzeigen</span>
+            </div>
+            <div class="command-item" role="listitem">
+              <code class="command-name">!profile</code>
+              <span class="command-desc">Dein Economy-Profil anzeigen</span>
+            </div>
+            <div class="command-item" role="listitem">
+              <code class="command-name">!blackjack</code>
+              <span class="command-desc">Blackjack spielen</span>
+            </div>
+            <div class="command-item" role="listitem">
+              <code class="command-name">!slots</code>
+              <span class="command-desc">Slotmaschine spielen</span>
+            </div>
+            <div class="command-item" role="listitem">
+              <code class="command-name">!crime</code>
+              <span class="command-desc">Kriminelle Aktion durchführen</span>
+            </div>
+            <div class="command-item" role="listitem">
+              <code class="command-name">!business</code>
+              <span class="command-desc">Unternehmen verwalten</span>
+            </div>
+            <div class="command-item" role="listitem">
+              <code class="command-name">!market</code>
+              <span class="command-desc">Marktplatz öffnen</span>
+            </div>
+            <div class="command-item" role="listitem">
+              <code class="command-name">!leaderboard</code>
+              <span class="command-desc">Reichste Nutzer anzeigen</span>
+            </div>
+            <div class="command-item" role="listitem">
+              <code class="command-name">!addcoins</code>
+              <span class="command-desc">Coins hinzufügen (Admin)</span>
+            </div>
+            <div class="command-item" role="listitem">
+              <code class="command-name">!setdailyrole</code>
+              <span class="command-desc">Daily-Bonus-Rolle setzen (Admin)</span>
+            </div>
+            <div class="command-item" role="listitem">
+              <code class="command-name">!removedailyrole</code>
+              <span class="command-desc">Daily-Bonus-Rolle entfernen (Admin)</span>
+            </div>
+            <div class="command-item" role="listitem">
+              <code class="command-name">!dailyroles</code>
+              <span class="command-desc">Daily-Bonus-Rollen anzeigen</span>
+            </div>
+            <div class="command-item" role="listitem">
+              <code class="command-name">!setcoinemoji</code>
+              <span class="command-desc">Coin-Emoji anpassen (Admin)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- General -->
+        <div class="commands-category" data-reveal>
+          <h3 class="commands-category__title">
+            <span class="commands-category__icon" aria-hidden="true">⚙️</span>
+            Allgemein
+          </h3>
+          <div class="commands-grid" role="list">
+            <div class="command-item" role="listitem">
+              <code class="command-name">!help</code>
+              <span class="command-desc">Hilfe und Befehlsliste anzeigen</span>
+            </div>
+            <div class="command-item" role="listitem">
+              <code class="command-name">!ping</code>
+              <span class="command-desc">Bot-Latenz prüfen</span>
+            </div>
+            <div class="command-item" role="listitem">
+              <code class="command-name">!info</code>
+              <span class="command-desc">Bot-Informationen anzeigen</span>
+            </div>
+            <div class="command-item" role="listitem">
+              <code class="command-name">!serverinfo</code>
+              <span class="command-desc">Server-Informationen anzeigen</span>
+            </div>
+            <div class="command-item" role="listitem">
+              <code class="command-name">!userinfo</code>
+              <span class="command-desc">Nutzer-Informationen anzeigen</span>
+            </div>
+            <div class="command-item" role="listitem">
+              <code class="command-name">!setprefix</code>
+              <span class="command-desc">Command-Prefix anpassen (Admin)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- News -->
+        <div class="commands-category" data-reveal>
+          <h3 class="commands-category__title">
+            <span class="commands-category__icon" aria-hidden="true">📰</span>
+            News
+          </h3>
+          <div class="commands-grid" role="list">
+            <div class="command-item" role="listitem">
+              <code class="command-name">!setnews</code>
+              <span class="command-desc">News-Kanal setzen (Admin)</span>
+            </div>
+            <div class="command-item" role="listitem">
+              <code class="command-name">!removenews</code>
+              <span class="command-desc">News-Kanal entfernen (Admin)</span>
+            </div>
+            <div class="command-item" role="listitem">
+              <code class="command-name">!newsstatus</code>
+              <span class="command-desc">News-Kanalstatus anzeigen</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA ──────────────────────────────────────────────── -->
+    <section class="cta-section" aria-labelledby="cta-heading">
+      <div class="cta-bg" aria-hidden="true"></div>
+      <div class="container">
+        <div class="cta-content" data-reveal>
+          <h2 class="cta-title" id="cta-heading">
+            Bereit für deine<br>
+            <span class="gradient-text">Server-Wirtschaft?</span>
+          </h2>
+          <p class="cta-desc">
+            Füge Vaulty jetzt zu deinem Server hinzu und starte in
+            weniger als einer Minute. Kostenlos.
+          </p>
+          <a href="https://discord.com/oauth2/authorize?client_id=1495824921593381105"
+             target="_blank" rel="noopener noreferrer"
+             class="btn btn-discord btn-lg">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+              <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.024.019.048.035.062a19.916 19.916 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/>
+            </svg>
+            Jetzt einladen – kostenlos
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ─── Footer ──────────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo" aria-label="Vaulty Startseite">
+            <span class="nav-logo__icon" aria-hidden="true">🏦</span>
+            <span class="nav-logo__text">Vaulty</span>
+          </a>
+          <p class="footer-tagline">
+            Der Economy Bot für deinen Discord Server.
+            Kostenlos, schnell und zuverlässig.
+          </p>
+        </div>
+
+        <nav class="footer-links" aria-label="Footer-Navigation">
+          <div class="footer-links__group">
+            <h3 class="footer-links__title">Bot</h3>
+            <ul role="list">
+              <li><a href="#features">Features</a></li>
+              <li><a href="#commands">Commands</a></li>
+              <li>
+                <a href="https://discord.com/oauth2/authorize?client_id=1495824921593381105"
+                   target="_blank" rel="noopener noreferrer">Bot einladen</a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer-links__group">
+            <h3 class="footer-links__title">Rechtliches</h3>
+            <ul role="list">
+              <li><a href="privacy.html">Datenschutzerklärung</a></li>
+              <li><a href="terms.html">Nutzungsbedingungen</a></li>
+            </ul>
+          </div>
+        </nav>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Vaulty &middot; Maurice Upmeier &middot; Alle Rechte vorbehalten</p>
+        <p>Nicht affiliiert mit Discord Inc.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Three.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <!-- Main Script -->
+  <script src="js/main.js"></script>
+</body>
+</html>
